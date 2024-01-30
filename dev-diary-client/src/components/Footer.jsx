@@ -6,6 +6,8 @@ import {
     BsInstagram,
     BsTwitter,
 } from "react-icons/bs";
+import logoBlack from "../assets/logo/black-logo.png";
+import logoWhite from "../assets/logo/white-logo.png";
 
 const FooterComp = () => {
     return (
@@ -14,11 +16,15 @@ const FooterComp = () => {
                 <div className="w-full xl:max-w-[1536px] mx-auto">
                     <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                         <div>
-                            <Footer.Brand
-                                href="https://flowbite.com"
-                                src="https://flowbite.com/docs/images/logo.svg"
-                                alt="Dev Diary Logo"
-                                name="Dev_Diary"
+                            <img
+                                src={logoWhite}
+                                alt=""
+                                className="w-40 dark:hidden"
+                            />
+                            <img
+                                src={logoBlack}
+                                alt=""
+                                className="w-40 hidden dark:inline"
                             />
                         </div>
                         <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">

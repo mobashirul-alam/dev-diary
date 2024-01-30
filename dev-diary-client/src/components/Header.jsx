@@ -2,13 +2,20 @@ import { Button, Navbar, TextInput } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import logoBlack from "../assets/logo/black-logo.png";
+import logoWhite from "../assets/logo/white-logo.png";
 
 export const Header = () => {
     const path = useLocation().pathname;
     return (
         <Navbar className="border-b-2">
-            <Link to="/" className="text-xl font-bold">
-                Dev Diary
+            <Link to="/">
+                <img src={logoWhite} alt="" className="w-40 dark:hidden" />
+                <img
+                    src={logoBlack}
+                    alt=""
+                    className="w-40 hidden dark:inline"
+                />
             </Link>
 
             <form>
