@@ -1,15 +1,18 @@
 import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { IoSunny } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import logoBlack from "../assets/logo/black-logo.png";
 import logoWhite from "../assets/logo/white-logo.png";
+import { toggleTheme } from "../redux/theme/themeSlice";
 
 export const Header = () => {
-    const path = useLocation().pathname;
     const { currentUser } = useSelector((state) => state.user);
-    console.log(currentUser);
+    const { theme } = useSelector((state) => state.theme);
+    const path = useLocation().pathname;
+    const dispatch = useDispatch();
     return (
         <Navbar className="border-b-2">
             <Link to="/">
@@ -38,8 +41,9 @@ export const Header = () => {
                     className="hidden sm:inline w-12 h-10"
                     color="gray"
                     pill
+                    onClick={() => dispatch(toggleTheme())}
                 >
-                    <FaMoon />
+                    {theme === "dark" ? <IoSunny /> : <FaMoon />}
                 </Button>
                 {currentUser ? (
                     <Dropdown

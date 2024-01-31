@@ -1,6 +1,5 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-import { Flowbite } from "flowbite-react";
-("flowbite-react");
 export default {
     content: [
         "./index.html",
@@ -10,5 +9,5 @@ export default {
     theme: {
         extend: {},
     },
-    plugins: [Flowbite],
+    plugins: [require("flowbite/plugin")],
 };
