@@ -22,7 +22,7 @@ export const Dashboard = () => {
                 <DashSidebar />
             </div>
             {/* Other tabs ... */}
-            <div>
+            <div className="w-full">
                 {/* Profile */}
                 {tab === "profile" && <DashProfile />}
             </div>
