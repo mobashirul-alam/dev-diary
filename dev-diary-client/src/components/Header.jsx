@@ -13,6 +13,7 @@ export const Header = () => {
     const { theme } = useSelector((state) => state.theme);
     const path = useLocation().pathname;
     const dispatch = useDispatch();
+
     return (
         <Navbar className="border-b-2">
             <Link to="/">
