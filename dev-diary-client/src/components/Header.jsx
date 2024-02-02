@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
+import { Navbar } from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMoon } from "react-icons/fa";
 import { IoSunny } from "react-icons/io5";
@@ -6,6 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import logoBlack from "../assets/logo/black-logo.png";
 import logoWhite from "../assets/logo/white-logo.png";
+import {
+    Avatar,
+    Button,
+    Dropdown,
+    TextInput,
+} from "../assets/utils/flowbiteExports";
 import { toggleTheme } from "../redux/theme/themeSlice";
 
 export const Header = () => {

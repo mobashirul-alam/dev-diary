@@ -1,6 +1,12 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+    Alert,
+    Button,
+    Label,
+    Spinner,
+    TextInput,
+} from "../assets/utils/flowbiteExports";
 import OAuth from "../components/OAuth";
 
 export const SignUp = () => {
