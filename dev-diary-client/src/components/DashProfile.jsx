@@ -10,6 +10,7 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Alert, Button, TextInput } from "../assets/utils/flowbiteExports";
 import { app } from "../firebase";
 import {
@@ -35,7 +36,7 @@ const DashProfile = () => {
     const [showModal, setShowModal] = useState(false);
 
     const filePickerRef = useRef();
-    const { currentUser, error } = useSelector((state) => state.user);
+    const { currentUser, error, loading } = useSelector((state) => state.user);
     const dispatch = useDispatch();
 
     const handleImageChange = (e) => {
@@ -237,9 +238,22 @@ const DashProfile = () => {
                         type="submit"
                         gradientDuoTone="purpleToPink"
                         outline
+                        disabled={loading || imageFileUploading}
                     >
-                        Update
+                        {loading ? "Loading..." : "Update"}
                     </Button>
+
+                    {currentUser.isAdmin && (
+                        <Link to="/create-post">
+                            <Button
+                                type="button"
+                                gradientDuoTone={"purpleToPink"}
+                                className="w-full"
+                            >
+                                Create a post
+                            </Button>
+                        </Link>
+                    )}
                 </form>
                 <div className="flex justify-between items-center mt-5 text-red-500">
                     <span
