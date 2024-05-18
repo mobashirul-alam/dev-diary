@@ -16,6 +16,7 @@ import {
     deleteUserError,
     deleteUserStart,
     deleteUserSuccess,
+    signOutSuccess,
     updateFailure,
     updateStart,
     updateSuccess,
@@ -143,6 +144,23 @@ const DashProfile = () => {
         }
     };
 
+    const handleSignOut = async () => {
+        try {
+            const res = await fetch("/api/user/signOut", {
+                method: "POST",
+            });
+            const data = await res.json();
+
+            if (!res.ok) {
+                console.log(data.message);
+            } else {
+                dispatch(signOutSuccess());
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     return (
         <div>
             <div className="max-w-lg mx-auto p-3">
@@ -230,7 +248,9 @@ const DashProfile = () => {
                     >
                         Delete Account
                     </span>
-                    <span className="cursor-pointer">Sign Out</span>
+                    <span onClick={handleSignOut} className="cursor-pointer">
+                        Sign Out
+                    </span>
                 </div>
                 {updateUserSuccess && (
                     <Alert color="success" className="mt-5">
