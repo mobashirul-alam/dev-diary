@@ -5,17 +5,21 @@ import { Link } from "react-router-dom";
 
 const DashPosts = () => {
     const [userPosts, setUserPosts] = useState([]);
+    const [showMore, setShowMore] = useState(true);
     const { currentUser } = useSelector((state) => state.user);
-    console.log(userPosts);
+
     useEffect(() => {
         const fetchPosts = async () => {
             try {
                 const res = await fetch(
-                    `/api/post/getPosts?userId=${currentUser._id}`
+                    `/api/post/getPosts?userId=${currentUser._id}&limit=10`
                 );
                 const data = await res.json();
                 if (res.ok) {
                     setUserPosts(data.posts);
+                    if (data.posts.length < 10) {
+                        setShowMore(false);
+                    }
                 }
             } catch (error) {
                 console.log(error.message);
@@ -27,13 +31,32 @@ const DashPosts = () => {
         }
     }, [currentUser._id, currentUser.isAdmin]);
 
+    const handleShowMore = async () => {
+        const startIndex = userPosts.length;
+        try {
+            const res = await fetch(
+                `/api/post/getPosts?userId=${currentUser._id}&startIndex=${startIndex}&limit=10`
+            );
+            const data = await res.json();
+
+            if (res.ok) {
+                setUserPosts((prev) => [...prev, ...data.posts]);
+                if (data.posts.length < 10) {
+                    setShowMore(false);
+                }
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     return (
         <div className="2xl:w-4/5 mx-auto">
-            <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+            <div className="table-auto overflow-x-scroll  md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
                 {currentUser.isAdmin && userPosts?.length > 0 ? (
                     <>
                         <Table hoverable className="shadow-md">
-                            <Table.Head>
+                            <Table.Head className="whitespace-nowrap">
                                 <Table.HeadCell>Date Updated</Table.HeadCell>
                                 <Table.HeadCell>Post Image</Table.HeadCell>
                                 <Table.HeadCell>Post Title</Table.HeadCell>
@@ -89,6 +112,14 @@ const DashPosts = () => {
                                 </Table.Body>
                             ))}
                         </Table>
+                        {showMore && (
+                            <button
+                                onClick={handleShowMore}
+                                className="w-full text-teal-500 self-center text-sm py-7"
+                            >
+                                Show more
+                            </button>
+                        )}
                     </>
                 ) : (
                     <p>You have no post yet.</p>
