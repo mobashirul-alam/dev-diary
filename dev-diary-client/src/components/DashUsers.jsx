@@ -52,25 +52,24 @@ const DashUsers = () => {
         }
     };
 
-    // const handleDeleteUser = async () => {
-    //     setShowModal(false);
-    //     try {
-    //         const res = await fetch(
-    //             `/api/user/deleteUser/${userIdToDelete}/${currentUser._id}`,
-    //             { method: "DELETE" }
-    //         );
-    //         const data = await res.json();
-    //         if (!res.ok) {
-    //             console.log(data.message);
-    //         } else {
-    //             setUsers((prev) =>
-    //                 prev.filter((user) => user._id !== userIdToDelete)
-    //             );
-    //         }
-    //     } catch (error) {
-    //         console.log(error.message);
-    //     }
-    // };
+    const handleDeleteUser = async () => {
+        setShowModal(false);
+        try {
+            const res = await fetch(`/api/user/delete/${userIdToDelete}`, {
+                method: "DELETE",
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                console.log(data.message);
+            } else {
+                setUsers((prev) =>
+                    prev.filter((user) => user._id !== userIdToDelete)
+                );
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     return (
         <div className="2xl:w-4/5 mx-auto">
@@ -153,7 +152,7 @@ const DashUsers = () => {
                             <div className="flex justify-center gap-4">
                                 <Button
                                     color="failure"
-                                    // onClick={() => handleDeleteUser()}
+                                    onClick={() => handleDeleteUser()}
                                 >
                                     {"Yes, I'm sure"}
                                 </Button>
