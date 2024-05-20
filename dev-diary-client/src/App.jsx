@@ -7,6 +7,7 @@ import { About } from "./pages/About";
 import CreatePost from "./pages/CreatePost.jsx";
 import { Dashboard } from "./pages/Dashboard";
 import { Home } from "./pages/Home";
+import PostPage from "./pages/PostPage.jsx";
 import { Projects } from "./pages/Projects";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
@@ -22,6 +23,7 @@ export default function App() {
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
                 <Route path="/projects" element={<Projects />} />
+                <Route path="/post/:postSlug" element={<PostPage />} />
                 {/* Private Routes */}
                 <Route element={<PrivateRoute />}>
                     <Route path="/dashboard" element={<Dashboard />} />
