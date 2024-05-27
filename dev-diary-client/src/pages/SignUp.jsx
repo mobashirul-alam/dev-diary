@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {
     Alert,
@@ -8,6 +9,7 @@ import {
     TextInput,
 } from "../assets/utils/flowbiteExports";
 import OAuth from "../components/OAuth";
+import { signInSuccess } from "../redux/user/userSlice";
 
 export const SignUp = () => {
     const [formData, setFormData] = useState();
@@ -15,6 +17,8 @@ export const SignUp = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     };
@@ -36,13 +40,15 @@ export const SignUp = () => {
             });
 
             const data = await res.json();
+            console.log(data);
             if (data.success === false) {
                 return setErrorMessage(data.message);
             }
 
             setLoading(false);
             if (res.ok) {
-                navigate("/sign-in");
+                dispatch(signInSuccess(data));
+                navigate("/");
             }
         } catch (error) {
             setErrorMessage(error.message);

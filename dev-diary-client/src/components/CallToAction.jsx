@@ -8,20 +8,23 @@ const CallToAction = () => {
                     Want to learn more about JavaScript?
                 </h2>
                 <p className="text-gray-500 my-2">
-                    Checkout these resources with 100 JavaScript Projects{" "}
+                    Checkout the resources with in w3schools{" "}
                 </p>
                 <Button gradientDuoTone="purpleToPink">
                     <a
-                        href="https://www.100jsprojects.com"
+                        href="https://www.w3schools.com/js/default.asp"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        100 JavaScript Projects
+                        Visit w3schools
                     </a>
                 </Button>
             </div>
             <div className="p-8 flex-1">
-                <img src="https://miro.medium.com/v2/resize:fit:1200/1*LyZcwuLWv2FArOumCxobpA.png" />
+                <img
+                    className="rounded-tr-3xl rounded-bl-3xl "
+                    src="https://miro.medium.com/v2/resize:fit:1200/1*LyZcwuLWv2FArOumCxobpA.png"
+                />
             </div>
         </div>
     );

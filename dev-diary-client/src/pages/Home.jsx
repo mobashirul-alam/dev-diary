@@ -32,7 +32,7 @@ export const Home = () => {
                     View all blogs
                 </Link>
             </div>
-            <div className="p-3 bg-amber-100 dark:bg-slate-700">
+            <div className="container mx-auto p-3 bg-amber-100 dark:bg-slate-700 rounded-tl-3xl rounded-br-3xl ">
                 <CallToAction />
             </div>
 
