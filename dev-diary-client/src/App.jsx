@@ -10,6 +10,7 @@ import { Dashboard } from "./pages/Dashboard";
 import { Home } from "./pages/Home";
 import PostPage from "./pages/PostPage.jsx";
 import { Projects } from "./pages/Projects";
+import Search from "./pages/Search.jsx";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 import UpdatePost from "./pages/UpdatePost.jsx";
@@ -21,6 +22,7 @@ export default function App() {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/search" element={<Search />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/sign-in" element={<SignIn />} />
                 <Route path="/sign-up" element={<SignUp />} />
